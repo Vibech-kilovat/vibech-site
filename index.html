@@ -14,11 +14,13 @@
       color: #333;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start; /* Поднимаем контент выше */
       align-items: center;
       height: 100vh;
       text-align: center;
-      padding: 20px;
+      padding-top: 60px; /* Отступ сверху, регулируй для смещения */
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     h1 {
@@ -28,21 +30,52 @@
       color: #4a4a4a;
     }
 
+    /* Текст описания - можно менять размеры и ширину текста тут */
     p.description {
-      font-weight: 400;        /* Толщина шрифта — 400 это нормальный (обычный) вес текста, не жирный */
-      font-size: 1.25rem;      /* Размер шрифта — 1.25 rem (примерно 20 пикселей, зависит от базового размера) */
-      line-height: 0.9;          /* Высота строки — расстояние между строками текста, 1 значит ровно размер шрифта (без дополнительного пространства) */
-      margin-top: 0;           /* Отступ сверху — 0, чтобы не было лишнего пространства перед параграфом */
-      margin-bottom: 1.2em;    /* Отступ снизу — 1.2em (em — относительно размера шрифта), чтобы был небольшой промежуток после параграфа */
-      color: #555;             /* Цвет текста — тёмно-серый, более мягкий, чем чёрный (#000) */
-      max-width: 400px;        /* Максимальная ширина блока текста — 400 пикселей, чтобы текст не был слишком широким и лучше читался */
-      white-space: pre-line;   /* Обрабатывает переносы строк и пробелы как в тексте — позволяет использовать <br> или переводы строки */
+      font-weight: 400;        /* Толщина шрифта */
+      font-size: 1.25rem;      /* Размер шрифта */
+      line-height: 1;          /* Высота строки - отступы между строками */
+      margin-top: 0;           /* Отступ сверху */
+      margin-bottom: 1.2em;    /* Отступ снизу */
+      color: #555;             /* Цвет текста */
+      max-width: 400px;        /* Максимальная ширина блока текста */
+      white-space: pre-line;   /* Поддержка переносов строк */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Контейнер для кнопок переключения языка */
+    .lang-switcher {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .lang-switcher button {
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #d6336c;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    .lang-switcher button:hover {
+      background-color: #b52a57;
+    }
+
+    .lang-switcher button.active {
+      background-color: #7b1940;
     }
 
     .contacts {
       display: flex;
       gap: 30px;
       justify-content: center;
+      margin-top: 20px;
     }
 
     .contacts a {
@@ -71,19 +104,55 @@
       bottom: 15px;
       font-size: 0.8rem;
       color: #777;
+      width: 100%;
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <h1>Vibech</h1>
   <img src="tr.png" alt="Vibech Logo" style="width:200px; margin: 20px auto; display: block;" />
-  <p class="description">
-  <strong>Vibe Beauty & Chill</strong><br />
-   3D печатные фигурки, декорации,<br />
-   настольные лампы, брелки<br />
-   и много вайба.<br />
-   Скоро открываемся!<br />
-  </p>
+
+  <!-- Переключатель языка -->
+  <div class="lang-switcher">
+    <button class="active" onclick="showLang('ru')">RU</button>
+    <button onclick="showLang('en')">ENG</button>
+    <button onclick="showLang('ua')">UA</button>
+  </div>
+
+  <!-- Русский текст -->
+  <div id="text-ru" class="lang-text">
+    <p class="description">
+      <strong>Vibe Beauty & Chill</strong><br />
+      3D печатные фигурки, декорации,<br />
+      настольные лампы, брелки<br />
+      и много вайба.<br />
+      Скоро открываемся!<br />
+    </p>
+  </div>
+
+  <!-- Английский текст -->
+  <div id="text-en" class="lang-text" style="display:none;">
+    <p class="description">
+      <strong>Vibe Beauty & Chill</strong><br />
+      3D printed figurines, decorations,<br />
+      table lamps, keychains,<br />
+      and a lot of vibes.<br />
+      Coming soon!<br />
+    </p>
+  </div>
+
+  <!-- Украинский текст -->
+  <div id="text-ua" class="lang-text" style="display:none;">
+    <p class="description">
+      <strong>Vibe Beauty & Chill</strong><br />
+      3D друковані фігурки, декорації,<br />
+      настільні лампи, брелки<br />
+      і багато вайбу.<br />
+      Скоро відкриваємось!<br />
+    </p>
+  </div>
+
   <div class="contacts">
     <a href="https://t.me/Vibech_dm" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L2 12l5 2 1 7 3-5 6 4z"/></svg>
@@ -96,6 +165,24 @@
       Instagram
     </a>
   </div>
+
   <footer>© 2025 Vibech</footer>
+
+  <script>
+    // Функция переключения языков
+    function showLang(lang) {
+      // Скрываем все языки
+      const langs = ['ru', 'en', 'ua'];
+      langs.forEach(l => {
+        document.getElementById('text-' + l).style.display = (l === lang) ? 'block' : 'none';
+      });
+
+      // Обновляем активную кнопку
+      const buttons = document.querySelectorAll('.lang-switcher button');
+      buttons.forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+      });
+    }
+  </script>
 </body>
 </html>
