@@ -159,7 +159,7 @@
       Скоро відкриваємось!<br />
     </p>
   </div>
-  <div id="text-sv" class="lang-text" style="display:none;">
+  <div id="text-sw" class="lang-text" style="display:none;">
     <p class="description">
     <strong>Vibe Beauty & Chill</strong><br />
     3D utskrivna figurer, dekorationer,<br />
@@ -189,7 +189,7 @@
       <img src="en.png" alt="ENG" class="flag" /> ENG
     </button>
     <button data-lang="sv" onclick="showLang('sv')">
-      <img src="sv.png" alt="SV" class="flag" /> SV
+      <img src="sv.png" alt="SV" class="flag" /> Sw
     </button>
     <button data-lang="ru" onclick="showLang('ru')">
       <img src="ru.png" alt="RU" class="flag" /> RU
@@ -204,7 +204,7 @@
   <script>
     // Функция переключения языков
     function showLang(lang) {
-      const langs = ['en', 'sv', 'ru', 'ua'];
+      const langs = ['en', 'sw', 'ru', 'ua'];
       langs.forEach(l => {
         document.getElementById('text-' + l).style.display = (l === lang) ? 'block' : 'none';
       });
