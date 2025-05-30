@@ -159,6 +159,15 @@
       Скоро відкриваємось!<br />
     </p>
   </div>
+  <div id="text-sv" class="lang-text" style="display:none;">
+    <p class="description">
+    <strong>Vibe Beauty & Chill</strong><br />
+    3D utskrivna figurer, dekorationer,<br />
+    bordslampor, nyckelringar,<br />
+    och mycket vibe.<br />
+    Kommer snart!<br />
+    </p>
+  </div>
 
   <!-- Контакты -->
   <div class="contacts">
@@ -176,11 +185,14 @@
 
   <!-- Переключатель языков -->
   <div class="lang-switcher">
-    <button data-lang="ru" class="active" onclick="showLang('ru')">
-      <img src="ru.png" alt="RU" class="flag" /> RU
-    </button>
     <button data-lang="en" onclick="showLang('en')">
       <img src="en.png" alt="ENG" class="flag" /> ENG
+    </button>
+    <button data-lang="sv" onclick="showLang('sv')">
+      <img src="sv.png" alt="SV" class="flag" /> SV
+    </button>
+    <button data-lang="ru" onclick="showLang('ru')">
+      <img src="ru.png" alt="RU" class="flag" /> RU
     </button>
     <button data-lang="ua" onclick="showLang('ua')">
       <img src="ua.png" alt="UA" class="flag" /> UA
@@ -192,7 +204,7 @@
   <script>
     // Функция переключения языков
     function showLang(lang) {
-      const langs = ['ru', 'en', 'ua'];
+      const langs = ['en', 'sv', 'ru', 'ua'];
       langs.forEach(l => {
         document.getElementById('text-' + l).style.display = (l === lang) ? 'block' : 'none';
       });
