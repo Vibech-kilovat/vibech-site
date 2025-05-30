@@ -71,7 +71,7 @@
       fill: currentColor;
     }
 
-    /* Переключатель языка внизу */
+    /* Переключатель языка */
     .lang-switcher {
       margin-top: 30px;
       display: flex;
@@ -80,14 +80,15 @@
       align-items: center;
     }
 
+    /* Основной стиль кнопок */
     .lang-switcher button {
       cursor: pointer;
-      font-size: 0.9rem;               /* чуть меньше размер шрифта */
-      padding: 6px 12px;               /* чуть меньше отступы */
+      font-size: 0.9rem;
+      padding: 6px 12px;
       border: none;
       border-radius: 5px;
       background-color: rgba(0, 0, 0, 0.1); /* прозрачный фон */
-      color: #666;                    /* более светлый/нейтральный цвет текста */
+      color: #666; /* базовый цвет текста */
       transition: background-color 0.3s ease, color 0.3s ease;
       display: flex;
       align-items: center;
@@ -95,15 +96,19 @@
       user-select: none;
     }
 
+    /* Подсветка при наведении */
     .lang-switcher button:hover {
-      background-color: rgba(0, 0, 0, 0.15); /* чуть темнее при наведении */
-      color: #444;                            /* чуть темнее текст */
+      background-color: rgba(0, 0, 0, 0.25);
+      color: #222;
     }
 
+    /* Активная кнопка НЕ меняет цвет (как базовая) */
     .lang-switcher button.active {
-      background-color: rgba(0, 0, 0, 0.25); /* более яркий фон для активной */
-      color: #222;                           /* темнее текст активной кнопки */
+      background-color: rgba(0, 0, 0, 0.1);
+      color: #666;
+      cursor: default;
     }
+
     .flag {
       width: 20px;
       height: 14px;
@@ -124,7 +129,7 @@
   <h1>Vibech</h1>
   <img src="tr.png" alt="Vibech Logo" style="width:200px; margin: 20px auto; display: block;" />
 
-  <!-- Русский текст -->
+  <!-- Тексты на трех языках -->
   <div id="text-ru" class="lang-text">
     <p class="description">
       <strong>Vibe Beauty & Chill</strong><br />
@@ -135,7 +140,6 @@
     </p>
   </div>
 
-  <!-- Английский текст -->
   <div id="text-en" class="lang-text" style="display:none;">
     <p class="description">
       <strong>Vibe Beauty & Chill</strong><br />
@@ -146,7 +150,6 @@
     </p>
   </div>
 
-  <!-- Украинский текст -->
   <div id="text-ua" class="lang-text" style="display:none;">
     <p class="description">
       <strong>Vibe Beauty & Chill</strong><br />
@@ -157,6 +160,7 @@
     </p>
   </div>
 
+  <!-- Контакты -->
   <div class="contacts">
     <a href="https://t.me/Vibech_dm" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L2 12l5 2 1 7 3-5 6 4z"/></svg>
@@ -172,13 +176,13 @@
 
   <!-- Переключатель языков -->
   <div class="lang-switcher">
-    <button class="active" onclick="showLang('ru')">
+    <button data-lang="ru" class="active" onclick="showLang('ru')">
       <img src="ru.png" alt="RU" class="flag" /> RU
     </button>
-    <button onclick="showLang('en')">
+    <button data-lang="en" onclick="showLang('en')">
       <img src="en.png" alt="ENG" class="flag" /> ENG
     </button>
-    <button onclick="showLang('ua')">
+    <button data-lang="ua" onclick="showLang('ua')">
       <img src="ua.png" alt="UA" class="flag" /> UA
     </button>
   </div>
@@ -186,15 +190,17 @@
   <footer>© 2025 Vibech</footer>
 
   <script>
+    // Функция переключения языков
     function showLang(lang) {
       const langs = ['ru', 'en', 'ua'];
       langs.forEach(l => {
         document.getElementById('text-' + l).style.display = (l === lang) ? 'block' : 'none';
       });
 
+      // Переключаем класс active у кнопок
       const buttons = document.querySelectorAll('.lang-switcher button');
       buttons.forEach(btn => {
-        btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
       });
     }
   </script>
