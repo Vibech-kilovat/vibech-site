@@ -29,11 +29,14 @@
     }
 
     p.description {
-      font-weight: 400;
-      font-size: 1.25rem;
-      margin-bottom: 1.5em;
-      color: #555;
-      max-width: 400px;
+     font-weight: 400;
+     font-size: 1.25rem;
+     line-height: 1.6; /* увеличенный межстрочный интервал */
+     margin-top: 0;
+     margin-bottom: 1.5em;
+     color: #555;
+     max-width: 400px;
+     white-space: pre-line; /* чтобы переносы работали корректно */
     }
 
     .contacts {
@@ -75,8 +78,10 @@
   <h1>Vibech</h1>
   <img src="tr.png" alt="Vibech Logo" style="width:200px; margin: 20px auto; display: block;" />
   <p class="description">
-    Vibe Beauty & Chill — скоро откроемся!<br/>
-    3D печатные фигурки, декорации, лампы, брелки и много вайба.
+  Vibe Beauty & Chill<br />
+  <strong>Скоро открываемся!</strong><br />
+  3D печатные фигурки, декорации,<br />
+  настольные лампы, брелки и много вайба.
   </p>
   <div class="contacts">
     <a href="https://t.me/Vibech_dm" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
