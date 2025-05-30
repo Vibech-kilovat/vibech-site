@@ -14,11 +14,11 @@
       color: #333;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* Поднимаем контент выше */
+      justify-content: flex-start;
       align-items: center;
       height: 100vh;
       text-align: center;
-      padding-top: 60px; /* Отступ сверху, регулируй для смещения */
+      padding-top: 60px;
       padding-left: 20px;
       padding-right: 20px;
     }
@@ -30,45 +30,17 @@
       color: #4a4a4a;
     }
 
-    /* Текст описания - можно менять размеры и ширину текста тут */
     p.description {
-      font-weight: 400;        /* Толщина шрифта */
-      font-size: 1.25rem;      /* Размер шрифта */
-      line-height: 1;          /* Высота строки - отступы между строками */
-      margin-top: 0;           /* Отступ сверху */
-      margin-bottom: 1.2em;    /* Отступ снизу */
-      color: #555;             /* Цвет текста */
-      max-width: 400px;        /* Максимальная ширина блока текста */
-      white-space: pre-line;   /* Поддержка переносов строк */
+      font-weight: 400;
+      font-size: 1.25rem;
+      line-height: 1;
+      margin-top: 0;
+      margin-bottom: 1.2em;
+      color: #555;
+      max-width: 400px;
+      white-space: pre-line;
       margin-left: auto;
       margin-right: auto;
-    }
-
-    /* Контейнер для кнопок переключения языка */
-    .lang-switcher {
-      margin-bottom: 20px;
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .lang-switcher button {
-      cursor: pointer;
-      font-size: 1rem;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 5px;
-      background-color: #d6336c;
-      color: white;
-      transition: background-color 0.3s ease;
-    }
-
-    .lang-switcher button:hover {
-      background-color: #b52a57;
-    }
-
-    .lang-switcher button.active {
-      background-color: #7b1940;
     }
 
     .contacts {
@@ -100,25 +72,55 @@
     }
 
     footer {
-      position: absolute;
-      bottom: 15px;
       font-size: 0.8rem;
       color: #777;
       width: 100%;
       text-align: center;
+      margin-top: 30px;
+    }
+
+    /* Переключатель языка внизу */
+    .lang-switcher {
+      margin-top: 30px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lang-switcher button {
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #d6336c;
+      color: white;
+      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lang-switcher button:hover {
+      background-color: #b52a57;
+    }
+
+    .lang-switcher button.active {
+      background-color: #7b1940;
+    }
+
+    .flag {
+      width: 20px;
+      height: 14px;
+      border-radius: 2px;
+      object-fit: cover;
     }
   </style>
 </head>
 <body>
   <h1>Vibech</h1>
   <img src="tr.png" alt="Vibech Logo" style="width:200px; margin: 20px auto; display: block;" />
-
-  <!-- Переключатель языка -->
-  <div class="lang-switcher">
-    <button class="active" onclick="showLang('ru')">RU</button>
-    <button onclick="showLang('en')">ENG</button>
-    <button onclick="showLang('ua')">UA</button>
-  </div>
 
   <!-- Русский текст -->
   <div id="text-ru" class="lang-text">
@@ -166,21 +168,31 @@
     </a>
   </div>
 
+  <!-- Переключатель языков -->
+  <div class="lang-switcher">
+    <button class="active" onclick="showLang('ru')">
+      <img src="flags/ru.png" alt="RU" class="flag" /> RU
+    </button>
+    <button onclick="showLang('en')">
+      <img src="flags/en.png" alt="ENG" class="flag" /> ENG
+    </button>
+    <button onclick="showLang('ua')">
+      <img src="flags/ua.png" alt="UA" class="flag" /> UA
+    </button>
+  </div>
+
   <footer>© 2025 Vibech</footer>
 
   <script>
-    // Функция переключения языков
     function showLang(lang) {
-      // Скрываем все языки
       const langs = ['ru', 'en', 'ua'];
       langs.forEach(l => {
         document.getElementById('text-' + l).style.display = (l === lang) ? 'block' : 'none';
       });
 
-      // Обновляем активную кнопку
       const buttons = document.querySelectorAll('.lang-switcher button');
       buttons.forEach(btn => {
-        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+        btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
       });
     }
   </script>
