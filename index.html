@@ -130,7 +130,7 @@
   <img src="tr.png" alt="Vibech Logo" style="width:200px; margin: 20px auto; display: block;" />
 
   <!-- Тексты на трех языках -->
-  <div id="text-ru" class="lang-text">
+  <div id="text-en" class="lang-text">
     <p class="description">
       <strong>Vibe Beauty & Chill</strong><br />
       3D печатные фигурки, декорации,<br />
@@ -140,7 +140,7 @@
     </p>
   </div>
 
-  <div id="text-en" class="lang-text" style="display:none;">
+  <div id="text-ru" class="lang-text" style="display:none;">
     <p class="description">
       <strong>Vibe Beauty & Chill</strong><br />
       3D printed figurines, decorations,<br />
@@ -203,6 +203,12 @@
         btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
       });
     }
+  <!-- Другие теги и скрипты -->
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      showLang('en');
+    });
   </script>
 </body>
 </html>
